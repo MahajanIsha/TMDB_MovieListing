@@ -12,9 +12,9 @@ class Movie extends React.Component
     ImageURL="http://image.tmdb.org/t/p/w185/";
     async getMovieDetails()
   {
-      console.log("entered get movie details:");
+
         const url = 'https://api.themoviedb.org/3/movie/'+ this.props.match.params.id +'?api_key=6ed12e064b90ae1290fa326ce9e790ff&language=en-US';
-        console.log(url);
+  
       await fetch(url)
      .then(response => response.json())
      .then((json)=>  {

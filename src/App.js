@@ -21,6 +21,7 @@ class App extends React.Component {
         <Route exact path="/" render={()=> (<Home ></Home>)}/>
 
         <Route path="/Movies/:id" render={(props)=>  (<Movie  {...props} ></Movie>)}></Route>
+        <Route path="/Search/:searchText" render={(props)=>  (<Home  {...props} ></Home>)}></Route>
        </Switch>
       </Router>
   );

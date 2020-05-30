@@ -29,7 +29,7 @@ class PopularMovie extends React.Component{
     render()
     { 
         const posterURL="http://image.tmdb.org/t/p/w185/" + this.props.movie.poster_path;
-        console.log("render the popular movies")
+       
         return(    
         <div class="gridBox"> 
       
