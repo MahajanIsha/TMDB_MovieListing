@@ -17,16 +17,24 @@ class App extends React.Component {
   render(){
     return(
       <Router>
-        <Switch>
-          <Route exact path="/" render={()=> (<Home ></Home>)}/>
-          <Route path="/Movies/:id" render={(props)=>  (<Movie  {...props} ></Movie>)}></Route>
-          <Route path="/Search/:searchText" render={(props)=>  (<Home  {...props} ></Home>)}></Route>
+ <Switch>
+        <Route exact path="/" render={()=> (<Home ></Home>)}/>
+
+        <Route path="/Movies/:id" render={(props)=>  (<Movie  {...props} ></Movie>)}></Route>
+        <Route path="/Search/:searchText" render={(props)=>  (<Home  {...props} ></Home>)}></Route>
        </Switch>
       </Router>
   );
   }
 }
 
-export default App;
 
+
+export default () => (
+  <div>
+     <Router>
+          <Route component={App} />
+     </Router>
+ </div>
+);
 

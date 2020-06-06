@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import SearchButton from './SearchButton'
 import PopularMovieList from './PopularMovieList'
-import { NavLink, Route, HashRouter } from 'react-router-dom'
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-
+import Header from './Header'
+import { withRouter } from 'react-router-dom'
 
 const API_KEY = 'api_key=6ed12e064b90ae1290fa326ce9e790ff';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { movieList: [], isPopulated: false, searchText: '', heading: 'Popular Movies', showMovieDetails: false };
 
     this.GetSearchedMovie = this.GetSearchedMovie.bind(this);
-    this.HandleSearchClick = this.HandleSearchClick.bind(this);
-    this.HandleSearch = this.HandleSearch.bind(this);
     this.getPopularMovies = this.getPopularMovies.bind(this);
   }
 
@@ -21,42 +19,20 @@ class Home extends React.Component {
     this.setState({ isPopulated: bool });
   }
 
-  HandleSearch(event) {
+  // General functions
+  HandleSearchText=(event)=> {
     let text = event.target.value;
     this.setState({ searchText: text });
-
   }
-  async GetSearchedMovie() {
-
-
-    let searchURL = "https://api.themoviedb.org/3/search/movie?api_key=6d4410c95e7895145387bfb047a21d25&language=en-US&query=" + this.state.searchText + "&page=1&include_adult=false";
-
-    await fetch(searchURL)
-      .then(response => response.json())
-      .then((json) => {
-        this.setState({
-          movieList: json.results
-        });
-        this.setState({ isPopulated: true, heading: '' });
-
-
-
-      })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== undefined) { this.GetSearchedMovie(); }
-    else { this.getPopularMovies(); }
-  }
-
-  HandleSearchClick() {
+  HandleSearchClick=()=> {
+    this.props.history.push('/Search/'+this.state.searchText)
     this.UpdateisPopulated(false);
-    this.GetSearchedMovie();
-
+    this.GetSearchedMovie(this.state.searchText);
   }
 
+  // get http respone
   async getPopularMovies() {
-    await fetch('https://api.themoviedb.org/3/movie/popular?api_key=6d4410c95e7895145387bfb047a21d25&language=en-US')
+    await fetch("https://api.themoviedb.org/3/movie/popular?"+API_KEY+"&language=en-US")
       .then(response => response.json())
       .then((json) => {
         this.setState({
@@ -65,40 +41,70 @@ class Home extends React.Component {
         this.setState({ isPopulated: true });
       })
   }
-  async componentDidMount() {
+  async GetSearchedMovie(searchText) {
+    let searchURL = "https://api.themoviedb.org/3/search/movie?"+API_KEY+"&language=en-US&query=" + searchText + "&page=1&include_adult=false";
 
-    await fetch('https://api.themoviedb.org/3/movie/popular?api_key=6d4410c95e7895145387bfb047a21d25&language=en-US')
-      .then(response => response.json())
-      .then((json) => {
-        this.setState({
-          movieList: json.results
-        });
-        this.setState({ isPopulated: true });
+    if(searchText==='' || searchText === undefined)
+    {
+      this.getPopularMovies();
+    }
 
+    else
+    {
+      await fetch(searchURL)
+        .then(response => response.json())
+        .then((json) => {
+          this.setState({
+            movieList: json.results
+          });
+        this.setState({ isPopulated: true, heading: '' });
       })
+    }
+  }
 
+  // lifecycle functions
+  componentWillReceiveProps(nextProps) {
+      var url = nextProps.location.pathname;
+      if(url.trim() === "/")
+      {
+        this.GetSearchedMovie(); 
+      }
+      else{
+      url = url.split("/");
+      this.GetSearchedMovie(url[url.length - 1]); }
+  }
 
+ componentDidMount() 
+ {
+        var url = this.props.location.pathname;
+        if(url.trim() === "/")
+        {
+          this.GetSearchedMovie(); 
+        }
+        else{
+        url = url.split("/");
+        this.GetSearchedMovie(url[url.length - 1]); }
+
+ }
+  componentWillUnmount() 
+  {
+     this.setState({isPopulated: false});
   }
 
   render() {
 
-    if (this.props.match?.params.searchText === '') {
-
-      this.getPopularMovies();
-    }
-
     if (this.state.isPopulated) {
       return (
         <div>
-          <h1>The Movie db</h1>
+          <Header></Header>
+          <br/> 
           <div>
-            <SearchButton HandleClick={this.HandleSearchClick} HandleSearch={this.HandleSearch}></SearchButton>
+            <SearchButton HandleClick={this.HandleSearchClick} HandleSearch={this.HandleSearchText}></SearchButton>
           </div>
           <br />
           <h3>{this.state.heading}</h3>
           <div><PopularMovieList MovieList={this.state.movieList}></PopularMovieList></div>
         </div>
-
       );
     }
     else {
@@ -107,7 +113,4 @@ class Home extends React.Component {
 
   }
 }
-
-
-
-export default Home;
+export default withRouter(Home);

@@ -1,28 +1,25 @@
 import React from "react"
 import {Route} from "react-router-dom"
 
-const API_KEY = '?api_key=6ed12e064b90ae1290fa326ce9e790ff';
 class Movie extends React.Component
 {
     constructor(props) {
         super(props);
-        this.state = { movieDetails: {}};
+        this.state = { movieDetails: {} };
         this.getMovieDetails = this.getMovieDetails.bind(this);
 
     }
+
     ImageURL = "http://image.tmdb.org/t/p/w185/";
-    _isMounted = false;
+
     async getMovieDetails() {
 
-        const url = 'https://api.themoviedb.org/3/movie/' + this.props.match.params.id + API_KEY+'&language=en-US';
+        const url = 'https://api.themoviedb.org/3/movie/' + this.props.match.params.id + '?api_key=6d4410c95e7895145387bfb047a21d25&language=en-US';
         
         await fetch(url)
             .then(response => response.json())
             .then((json) => {
-                if(this._isMounted)
-                   this.setState({movieDetails: json});
-                   else
-                   return;
+               this.setState({movieDetails: json});
             })
     }
 
@@ -37,15 +34,6 @@ formatRunTime=()=>{
     var returntime = Hours+"h "+minutes+"min" ;
     return returntime;
 
-}
-
-componentDidMount()
-{
-    this._isMounted = true;
-}
-componentWillUnmount()
-{
-    this._isMounted = false
 }
     render()
 {
@@ -64,7 +52,8 @@ componentWillUnmount()
             </div>
             <br/>
             <img class="profileImage" src={posterURL}></img>
-            <div class="midTier">               
+            <div class="midTier"> 
+                
                 <p class="MovieName">{this.state.movieDetails.title}</p>
                 <div class="MovieDetails"><span>{this.formatReleaseDate()} . {this.state.movieDetails.vote_average*10}%</span><br/><span>>{this.formatRunTime()}</span></div>
             </div>

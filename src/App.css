@@ -1,6 +1,6 @@
 *
 {
-    outline: none;
+      outline: none;
 }
 
 html, body
@@ -21,60 +21,95 @@ body
 
 }
 
+/*header.js*/
+.header{
+ 
+  text-align: center;
+  width: 100%;
+  height: 200px;
+}
+
+.header img{
+  margin: auto;  
+  display: block;
+  margin-top: 40px;
+}
+.header #rect1{
+  position: absolute;
+  left: 17%;
+  right: 58.93%;
+  top: 20%;
+  bottom: 83.56%;
+}
+.header #rect2{
+    position: absolute;
+    left: 64.27%;
+    right: 20%;
+    top: 18%;
+    height: 3;
+    bottom: 90.04%;
+}
+.header #rect3{position: absolute;
+      left: 6.13%;
+      right: 40.67%;
+      top: -12%;
+}
+.header #rect4{position: absolute;
+        left: 2.13%;
+        right: 37.67%;
+        top: -8.26%;
+        bottom: 95.39%;
+}
+.header #rect5{position: absolute;
+  left: 71.27%;
+  right: 40%;
+  right: 50%;
+  top: -12%;
+  bottom: 96.97%;
+}
+.header #rect6{position: absolute;
+    left: 71.0%;
+    right: 55.67%;
+    top: -8.26%;
+    bottom: 93.82%;
+  }
+
+/* Dearch Button*/
+
 .tb
 {
     display: table;
-    width: 100%;
+    width: 100%;  
 }
 
-.td
-{
-    display: table-cell;
-    vertical-align: middle;
-}
+  .td
+  {
+      display: table-cell;
+      vertical-align: middle;
+    
+  }
 
 input, button
 {
-    color:green;
-    font-family: Nunito;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    background-color: transparent;
-}
-
-#cover
-{
-    position: relative;
-    top: 20%;
-    left: 2%;
-    right: 0;
-    width: 80%;
-    padding: 5px;
-    height:5%;
-    margin: 0;
-    background-color:white;
-    border-radius: 500px;
-    border-color: black;
-    border-style: solid;
-    
-}
-.inputtest{
-
- width: 80%;
-    height: 50px;
-    font-size: 60px;
-    line-height: 1;
-    border: solid 1px black;
-    border-radius: 10px;
+      color:green;
+      font-family: Nunito;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background-color: transparent;
+      z-index: 5000;      
 }
 
 input[type="text"]
 {
     width: 100%;
-    height: 96px;
-    font-size: 60px;
+    height: 50px;
+    font-size: 40px;
     line-height: 1;
+    margin:30px;
+    padding-left: 20px;
+    background-color: white;
+    border-radius: 50px;
 }
 
 input[type="text"]::placeholder
@@ -82,72 +117,20 @@ input[type="text"]::placeholder
     color: green;
 }
 
-#s-cover
-{
-    width: 1px;
-    padding-left: 35px;
-}
-
-button
-{
-    position: relative;
-    display: block;
-    width: 84px;
-    height: 90px;
-    cursor: pointer;
-}
 #searchbutton{
   position: relative;
-    top: 0px;
-    left: -20px;
-    width: 70px;
-    height: 70px;
-}
-
-
-#s-circle
-{
-    position: relative;
-    top: -8px;
-    left: -20px;
-    width: 43px;
-    height: 43px;
-    margin-top: 0;
-    border-width: 15px;
-    border: 15px solid green;
-    background-color: transparent;
-    border-radius: 50%;
-    transition: 0.5s ease all;
-}
-
-button span
-{
-    position: absolute;
-    top: 68px;
-    left: 25px;
+    top: 30px;
+    left: 30%;
+    left: -15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
     display: block;
-    width: 45px;
-    height: 15px;
-    background-color: transparent;
-    border-radius: 10px;
-    transform: rotateZ(52deg);
-    transition: 0.5s ease all;
+    cursor: pointer;
+    z-index: 1000;
 }
 
-button span:before, button span:after
-{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 45px;
-    height: 15px;
-    background-color: green;
-    border-radius: 10px;
-    transform: rotateZ(0);
-    transition: 0.5s ease all;
-}
-
+/* PopularMovieList.js*/
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -155,6 +138,8 @@ button span:before, button span:after
   grid-auto-rows: minmax(100px, auto);
   background-color: black;
 }
+
+/* PopularMovie.js */
 .gridBox{
   display: grid;
   
@@ -162,7 +147,7 @@ button span:before, button span:after
   grid-template-rows: repeat(1, 1fr);
 }
 
-  .gridBox .gridAnchor .topleft {
+.gridBox .gridAnchor .topleft {
    
     position: relative;
     left: 5px;
@@ -170,166 +155,113 @@ button span:before, button span:after
     background-color: green;
     color: honeydew;
     border-radius: 10px;
-    
-  }
+}
 
-  .percent
+.percent
   {
     grid-column: 1;
     grid-row:1;
     background-color: green;
     color:white;
-  }
-  .gridAnchor
-{
-     max-width: 100%;
-      
-      grid-row-end: 1;
-    
-  }
+}
 
-  .gridImage
-  {
+.gridAnchor
+{
+    max-width: 100%; 
+    grid-row-end: 1;
+}
+
+.gridImage
+{
     width: 100%;
     height: 100%;
     max-height: auto;
     object-fit: contain;
     top:0px;
-    
-  }
+}
 
 .inputClass
 {
   border: solid 1px black;
 }
 
+/*Movie,js*/
 .moviedetail{
-
   margin-left: auto;
   margin-right: auto;
-  max-width:800px;
-align-content: center;
-}
- 
-.backgroundImage
-{
-position: absolute;
-left: 0px;
-right: 0px;
-top: 0%;
-bottom: 76.75%;
-
-}
-
-.backgroundImage img{
-  width: 100%;
-  height:100%;
+  max-width:600px;
   align-content: center;
 }
-
-
-  .midTier .MovieName1{
-    margin-left: 10%;
-    position: relative;
-    z-index: 1000;
-    top: 0;
+ 
+.backgroundImage img{
+  position: relative;
+  width: 100%;
+  height: 200px;
+  width: 100%;
+  align-content: center;
+}
+.midTier .MovieName{position: relative;
+  height: 74.91px;
+  left: 50px;
+  right: 27px;
+  top: 2px;    
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 28px;
   line-height: 30px;
- color: #E3F4FC;
- 
-  }
+  color: #E3F4FC;}
 
-  .midTier .MovieName{position: absolute;
-    height: 74.91px;
-    left: 178px;
-    right: 27px;
-    top: 200px;
-    
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 28px;
-    line-height: 30px;
-    /* or 107% */
-    
-    
-    color: #E3F4FC;}
+.midTier .MovieDetails{
+  position: relative;
+  height: 60.14px;
+  left: 50px;
+  right: 27px;
+  top: -15px;
 
-  .midTier .MovieDetails{
-    position: absolute;
-height: 60.14px;
-left: 178px;
-right: 27px;
-top: 295.08px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 21px;
-/* or 175% */
-
-
-color: #B8D8E6;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 21px;
+  color: #B8D8E6;
 
   }
   .profileImage{
-    position: absolute;
-    top: 15%;
+    position: relative;
+    top: -70px;
     left:0;
-    float: right;
+    float: left;
     margin: 10px;
     height: 213px;
-    width: 100px;
+    width: 150px;
+    border-radius: 10%;
     }
-/* Movie.js */
-.movieOverview1{
-  position: absolute;
-height: 240px;
-left: 21px;
-right: 21px;
-top: 60%;
 
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-/* or 150% */
+  .movieOverview{
+    position: relative;
+    height: 28px;
+    left: -170px;
+    right: 0px;
+    top: 0px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #E3F4FC;}
 
-color: #9FBBC7;
-}
-
-.movieOverview
-{position: absolute;
-  height: 28px;
-  left: 21px;
-  right: 21px;
-  top: 447px;
-  
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 24px;
-  color: #E3F4FC;}
-  .detailOverview{position: absolute;
+  .detailOverview{position: relative;
     height: 240px;
-    left: 21px;
-    right: 21px;
-    top: 487px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
     
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-    /* or 150% */
-    
-    
     color: #9FBBC7;}
 
    

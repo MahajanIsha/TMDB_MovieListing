@@ -3,7 +3,6 @@ import Movie from './Movie'
 import { Link } from 'react-router-dom';
 
 const popularMovieURL="http://image.tmdb.org/t/p/w185/"
-
 class PopularMovie extends React.Component{
     constructor(props)
     {
@@ -22,15 +21,21 @@ class PopularMovie extends React.Component{
         return new Date(this.props.movie.release_date).toLocaleDateString([],options);
     }
 
+   HandleClick=() =>
+   {
+       this.props.HandleClick(this.props.movie.id)
+   }
+ 
     render()
     { 
-        const posterURL=popularMovieURL + this.props.movie.poster_path;
+        const posterURL="http://image.tmdb.org/t/p/w185/" + this.props.movie.poster_path;
+       
         return(    
         <div class="gridBox"> 
       
           <div class="gridAnchor"  > 
-            { this.props.movie.poster_path?<span class="topleft" style={{backgroundColor: this.props.movie.vote_average>7?'green':(this.props.movie.vote_average>4?'blue':'red')}}>{this.props.movie.vote_average*10}%</span>:null}
-             <img class="gridImage" src={posterURL} alt="movie poster"/>
+             <span class="topleft" style={{backgroundColor: this.props.movie.vote_average>7?'green':(this.props.movie.vote_average>4?'blue':'red')}}>{this.props.movie.vote_average*10}%</span>
+             <img class="gridImage" src={posterURL} alt="movie picture"/>
               <div style={{color: 'white', }}> 
                  <text>{this.props.movie.title}</text><br/>
                  <text>{this.formatReleaseDate()}</text>

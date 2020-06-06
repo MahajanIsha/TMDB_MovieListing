@@ -8,23 +8,27 @@ class PopularMovieList extends React.Component
     constructor(props)
     {
         super(props);
+        this.state = {renderMovieDetails: false, movieId:0};
     }
- 
+
+   
     render(){
+    
+   {/*} this.MovieList.map(movie => <PopularMovie movie={movie}></PopularMovie>) */}
         return(
             
                 <div class="wrapper">
-                {this.props.MovieList.length>0 
-                ?this.props.MovieList.map((item, index) => (
+                {this.props.MovieList.map((item, index) => (
                     <Link key={index} to={`/Movies/${item.id}`}>
                         <PopularMovie movie={item} key={index} />
                     </Link>
-                ))
-                :<h1>No movie found</h1>}
-                </div>           
+                ))}
+                </div>
+           
         );
         return(<div>PopularMoviescalled</div>);
-    }
+}
+    
 }
 
 export default PopularMovieList;
