@@ -38,7 +38,7 @@ class Home extends React.Component {
         this.setState({
           movieList: json.results
         });
-        this.setState({ isPopulated: true });
+        this.setState({ isPopulated: true, heading: 'Popular Movies' });
       })
   }
   async GetSearchedMovie(searchText) {
